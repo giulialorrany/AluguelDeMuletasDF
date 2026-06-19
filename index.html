@@ -15,1268 +15,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- CSS do projeto -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<style>
-    /* ============================================================
-   VIDA ATIVA ALUGUÉIS — BASE DE SITE
-   Estrutura inspirada em landing pages de aluguel de
-   equipamentos ortopédicos. Personalize cores, textos,
-   imagens e links de WhatsApp conforme a sua empresa.
-   ============================================================ */
-
-/* ---------- 1. RESET ---------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-}
-
-button {
-  font: inherit;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-/* ---------- 2. DESIGN TOKENS ---------- */
-:root {
-  /* Cores principais */
-  --color-primary: #1b4f8c;
-  --color-primary-dark: #103a68;
-  --color-primary-light: #2e86c1;
-
-  --color-accent: #14b8a6;
-  --color-accent-dark: #0f9488;
-
-  --color-whatsapp: #25d366;
-  --color-whatsapp-dark: #1ebe57;
-
-  /* Neutros */
-  --color-bg: #f4f8fb;
-  --color-surface: #ffffff;
-  --color-border: #e3eaf1;
-  --color-text: #1f2937;
-  --color-text-muted: #64748b;
-
-  /* Tipografia */
-  --font-display: "Outfit", sans-serif;
-  --font-body: "Inter", sans-serif;
-
-  /* Layout */
-  --container-width: 1200px;
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-pill: 999px;
-
-  /* Sombras */
-  --shadow-sm: 0 4px 12px rgba(27, 79, 140, 0.06);
-  --shadow-md: 0 12px 32px rgba(27, 79, 140, 0.12);
-  --shadow-lg: 0 24px 60px rgba(27, 79, 140, 0.18);
-
-  /* Transições */
-  --transition: 0.25s ease;
-}
-
-/* ---------- 3. BASE ---------- */
-body {
-  font-family: var(--font-body);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  line-height: 1.2;
-  color: var(--color-primary-dark);
-}
-
-.container {
-  width: 100%;
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.section {
-  padding: 88px 0;
-}
-
-.section__head {
-  max-width: 680px;
-  margin: 0 auto 56px;
-  text-align: center;
-}
-
-.section__head--left {
-  margin: 0 0 32px;
-  text-align: left;
-}
-
-.section__title {
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  margin: 12px 0 16px;
-}
-
-.section__title--light {
-  color: #ffffff;
-}
-
-.section__text {
-  color: var(--color-text-muted);
-  font-size: 17px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-accent-dark);
-  background: rgba(20, 184, 166, 0.1);
-  padding: 8px 18px;
-  border-radius: var(--radius-pill);
-}
-
-.eyebrow--light {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-}
-
-/* ---------- 4. BOTÕES ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 15px 30px;
-  border-radius: var(--radius-pill);
-  transition: transform var(--transition), box-shadow var(--transition), background var(--transition), color var(--transition);
-  white-space: nowrap;
-}
-
-.btn--primary {
-  background: var(--color-primary);
-  color: #ffffff;
-  box-shadow: var(--shadow-sm);
-}
-
-.btn--primary:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.btn--ghost {
-  background: var(--color-surface);
-  color: var(--color-primary);
-  border: 1px solid var(--color-border);
-}
-
-.btn--ghost:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-}
-
-.btn--whatsapp {
-  background: var(--color-whatsapp);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.28);
-}
-
-.btn--whatsapp:hover {
-  background: var(--color-whatsapp-dark);
-  transform: translateY(-2px);
-}
-
-.btn--block {
-  width: 100%;
-}
-
-.btn--lg {
-  padding: 18px 36px;
-  font-size: 16px;
-}
-
-.link-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-top: 16px;
-  border-bottom: 2px solid transparent;
-  transition: border-color var(--transition);
-}
-
-.link-cta:hover {
-  border-color: var(--color-primary);
-}
-
-/* ---------- 5. HEADER ---------- */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(244, 248, 251, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.header__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 20px;
-  color: var(--color-primary-dark);
-}
-
-.logo__icon {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-
-.logo__accent {
-  color: var(--color-accent-dark);
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.nav__link {
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--color-text);
-  position: relative;
-  transition: color var(--transition);
-}
-
-.nav__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transition: width var(--transition);
-}
-
-.nav__link:hover {
-  color: var(--color-primary);
-}
-
-.nav__link:hover::after {
-  width: 100%;
-}
-
-.header__cta {
-  flex-shrink: 0;
-}
-
-.nav__toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 40px;
-  height: 40px;
-}
-
-.nav__toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--color-primary-dark);
-  border-radius: 2px;
-  transition: transform var(--transition), opacity var(--transition);
-}
-
-/* ---------- 6. HERO ---------- */
-.hero {
-  padding: 64px 0 96px;
-  overflow: hidden;
-}
-
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 64px;
-  align-items: center;
-}
-
-.hero__title {
-  font-size: clamp(34px, 5vw, 52px);
-  font-weight: 800;
-  margin: 18px 0 20px;
-}
-
-.hero__text {
-  color: var(--color-text-muted);
-  font-size: 18px;
-  max-width: 520px;
-  margin-bottom: 32px;
-}
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 44px;
-}
-
-.hero__features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.hero__features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-}
-
-.hero__features i {
-  font-size: 20px;
-  color: var(--color-accent-dark);
-  margin-top: 2px;
-}
-
-.hero__features strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--color-primary-dark);
-}
-
-.hero__features span {
-  color: var(--color-text-muted);
-  font-size: 13px;
-}
-
-.hero__media {
-  position: relative;
-}
-
-.hero__image {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-.hero__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  aspect-ratio: 4 / 3.2;
-}
-
-.hero__stat {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  padding: 14px 20px;
-  box-shadow: var(--shadow-md);
-  font-family: var(--font-display);
-}
-
-.hero__stat strong {
-  font-size: 20px;
-  color: var(--color-primary-dark);
-  display: block;
-  line-height: 1.1;
-}
-
-.hero__stat span {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
-
-.hero__stat--clients {
-  left: -24px;
-  bottom: 32px;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.hero__stat--rating {
-  right: -16px;
-  top: 32px;
-}
-
-.hero__stat--rating i {
-  color: #f5a623;
-  font-size: 24px;
-}
-
-/* ---------- 7. PRODUTOS ---------- */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-}
-
-.product-card {
-  position: relative;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition);
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
-}
-
-.product-card__badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 2;
-  background: var(--color-accent);
-  color: #ffffff;
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: var(--radius-pill);
-}
-
-.product-card__media {
-  display: grid;
-  place-items: center;
-  height: 140px;
-  background: linear-gradient(135deg, rgba(27, 79, 140, 0.08), rgba(20, 184, 166, 0.08));
-  color: var(--color-primary);
-  font-size: 44px;
-}
-
-.product-card__body {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-
-.product-card__body h3 {
-  font-size: 17px;
-  font-weight: 700;
-}
-
-.product-card__body p {
-  font-size: 13.5px;
-  color: var(--color-text-muted);
-  flex: 1;
-}
-
-.product-card__tag {
-  display: inline-flex;
-  align-self: flex-start;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  background: rgba(27, 79, 140, 0.08);
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 8px;
-}
-
-.product-card .btn {
-  font-size: 13.5px;
-  padding: 11px 22px;
-}
-
-/* ---------- 8. SIMULADOR ---------- */
-.simulador {
-  background: var(--color-surface);
-}
-
-.simulador__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-  align-items: center;
-}
-
-.simulador__intro .section__text {
-  margin-bottom: 0;
-}
-
-.simulador__card {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.field label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: var(--color-primary-dark);
-}
-
-.field__value {
-  background: var(--color-primary);
-  color: #ffffff;
-  font-size: 12px;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-}
-
-.field select {
-  width: 100%;
-  padding: 14px 16px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  font: inherit;
-  font-weight: 500;
-  color: var(--color-text);
-  appearance: none;
-  cursor: pointer;
-}
-
-.field select:focus,
-.field input:focus {
-  outline: 2px solid var(--color-primary-light);
-  outline-offset: 2px;
-}
-
-.field input[type="range"] {
-  width: 100%;
-  accent-color: var(--color-primary);
-  cursor: pointer;
-}
-
-.range-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: var(--color-text-muted);
-  margin-top: 6px;
-}
-
-.result {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  border-radius: var(--radius-md);
-  padding: 24px;
-  text-align: center;
-  color: #ffffff;
-}
-
-.result__label {
-  display: block;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.8;
-  margin-bottom: 6px;
-}
-
-.result__price {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 800;
-  margin-bottom: 4px;
-}
-
-.result__sub {
-  font-size: 13px;
-  opacity: 0.85;
-}
-
-.disclaimer {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  text-align: center;
-}
-
-/* ---------- 9. DEPOIMENTOS ---------- */
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-bottom: 56px;
-}
-
-.testimonial-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.testimonial-card__stars {
-  color: #f5a623;
-  font-size: 14px;
-  display: flex;
-  gap: 4px;
-}
-
-.testimonial-card p {
-  font-size: 14px;
-  color: var(--color-text);
-  flex: 1;
-}
-
-.testimonial-card__author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.testimonial-card__author img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.testimonial-card__author strong {
-  display: block;
-  font-size: 14px;
-}
-
-.testimonial-card__author span {
-  font-size: 12px;
-  color: var(--color-text-muted);
-}
-
-.reviews-banner {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 32px;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  border-radius: var(--radius-lg);
-  padding: 36px 40px;
-  color: #ffffff;
-}
-
-.reviews-banner__score {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.reviews-banner__number {
-  font-family: var(--font-display);
-  font-size: 48px;
-  font-weight: 800;
-}
-
-.reviews-banner__stars {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  color: #f5a623;
-  font-size: 16px;
-}
-
-.reviews-banner__stars span {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.85);
-  font-family: var(--font-body);
-}
-
-.reviews-banner__text h3 {
-  color: #ffffff;
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-
-.reviews-banner__text p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 420px;
-}
-
-.reviews-banner__text .link-cta {
-  color: #ffffff;
-}
-
-.reviews-banner__text .link-cta:hover {
-  border-color: #ffffff;
-}
-
-.reviews-banner__badges {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.reviews-banner__badges span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-pill);
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* ---------- 10. FAQ / ACCORDION ---------- */
-.faq {
-  background: var(--color-surface);
-}
-
-.accordion {
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.accordion__item {
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--color-bg);
-}
-
-.accordion__trigger {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  text-align: left;
-  color: var(--color-primary-dark);
-}
-
-.accordion__trigger i {
-  transition: transform var(--transition);
-  color: var(--color-accent-dark);
-  flex-shrink: 0;
-}
-
-.accordion__item.is-open .accordion__trigger i {
-  transform: rotate(180deg);
-}
-
-.accordion__panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--transition);
-}
-
-.accordion__panel p {
-  padding: 0 24px 20px;
-  color: var(--color-text-muted);
-  font-size: 14px;
-}
-
-.accordion__panel a {
-  color: var(--color-primary);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-/* ---------- 11. CONTATO ---------- */
-.contato {
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
-  text-align: center;
-}
-
-.contato__grid {
-  display: flex;
-  justify-content: center;
-}
-
-.contato__content {
-  max-width: 620px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.contato__text {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 17px;
-}
-
-.contato__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 12px;
-}
-
-.contato__list li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.contato__list i {
-  color: var(--color-accent);
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-}
-
-.contato__hours {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
-  margin-top: 8px;
-}
-
-/* ---------- 12. LOCALIZAÇÃO ---------- */
-.localizacao__grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
-  align-items: center;
-}
-
-.info-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: var(--shadow-sm);
-}
-
-.info-card h3 {
-  font-size: 20px;
-  margin-bottom: 6px;
-}
-
-.info-card__tag {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-accent-dark);
-  background: rgba(20, 184, 166, 0.1);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 24px;
-}
-
-.info-card__list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-bottom: 28px;
-}
-
-.info-card__list li {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.info-card__list i {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border-radius: var(--radius-sm);
-  background: rgba(27, 79, 140, 0.08);
-  color: var(--color-primary);
-  font-size: 15px;
-}
-
-.info-card__list strong {
-  display: block;
-  font-size: 14px;
-  font-family: var(--font-display);
-  margin-bottom: 2px;
-}
-
-.info-card__list span {
-  font-size: 13.5px;
-  color: var(--color-text-muted);
-}
-
-.localizacao__map {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  min-height: 420px;
-}
-
-.localizacao__map iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 420px;
-  display: block;
-}
-
-/* ---------- 13. FOOTER ---------- */
-.footer {
-  background: #0e2a48;
-  color: rgba(255, 255, 255, 0.75);
-  padding-top: 72px;
-}
-
-.footer__grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 48px;
-}
-
-.logo--footer {
-  color: #ffffff;
-  margin-bottom: 16px;
-}
-
-.logo--footer .logo__accent {
-  color: var(--color-accent);
-}
-
-.footer__brand p {
-  font-size: 14px;
-  margin-bottom: 20px;
-  max-width: 320px;
-}
-
-.footer__social {
-  display: flex;
-  gap: 12px;
-}
-
-.footer__social a {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  transition: background var(--transition), color var(--transition);
-}
-
-.footer__social a:hover {
-  background: var(--color-accent);
-  color: #0e2a48;
-}
-
-.footer__col h4 {
-  color: #ffffff;
-  font-size: 15px;
-  margin-bottom: 18px;
-}
-
-.footer__col ul {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-}
-
-.footer__col a {
-  transition: color var(--transition);
-}
-
-.footer__col a:hover {
-  color: var(--color-accent);
-}
-
-.footer__contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.footer__contact i {
-  margin-top: 3px;
-  color: var(--color-accent);
-}
-
-.footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 24px;
-}
-
-.footer__bottom-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding: 20px 0;
-  font-size: 13px;
-  flex-wrap: wrap;
-}
-
-.footer__bottom-inner i {
-  color: var(--color-accent);
-}
-
-/* ---------- 14. BOTÃO FLUTUANTE WHATSAPP ---------- */
-.whatsapp-float {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--color-whatsapp);
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-size: 28px;
-  box-shadow: var(--shadow-lg);
-  z-index: 200;
-  transition: transform var(--transition);
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.08);
-}
-
-/* ---------- 15. RESPONSIVO ---------- */
-@media (max-width: 1024px) {
-  .products-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero__grid,
-  .simulador__grid,
-  .localizacao__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__media {
-    order: -1;
-  }
-
-  .hero__stat--clients,
-  .hero__stat--rating {
-    position: static;
-    display: inline-flex;
-    margin: 16px 8px 0 0;
-  }
-
-  .hero__media {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .reviews-banner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .reviews-banner__score,
-  .reviews-banner__text {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .reviews-banner__text p {
-    margin: 0 auto;
-  }
-
-  .reviews-banner__badges {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--color-surface);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: var(--shadow-md);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--transition);
-  }
-
-  .nav.is-open {
-    max-height: 360px;
-  }
-
-  .nav__link {
-    width: 100%;
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .nav__link::after {
-    display: none;
-  }
-
-  .nav__toggle {
-    display: flex;
-  }
-
-  .nav__toggle.is-active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-
-  .nav__toggle.is-active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .nav__toggle.is-active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  .header__cta {
-    display: none;
-  }
-
-  .hero__features {
-    grid-template-columns: 1fr;
-  }
-
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .footer__grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-
-@media (max-width: 480px) {
-  .section {
-    padding: 64px 0;
-  }
-
-  .hero {
-    padding: 40px 0 64px;
-  }
-
-  .hero__actions {
-    flex-direction: column;
-  }
-
-  .hero__actions .btn {
-    width: 100%;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .reviews-banner {
-    padding: 28px 20px;
-  }
-}
-</style>
 <body>
 
   <!-- =================== HEADER =================== -->
@@ -1310,77 +50,144 @@ h1, h2, h3, h4 {
 
   <!-- =================== HERO =================== -->
   <section class="hero" id="inicio">
-    <div class="container hero__grid">
 
-      <div class="hero__content">
-        <span class="eyebrow eyebrow--light">
-          <i class="fa-solid fa-location-dot"></i> Referência em Mobilidade e Recuperação
-        </span>
+    <!-- Carousel -->
+    <div class="hero__carousel" id="heroCarousel">
 
-        <h1 class="hero__title">
-          Aluguel de Equipamentos Ortopédicos para o seu Conforto
-        </h1>
+      <div class="hero__slides">
 
-        <p class="hero__text">
-          Cadeiras de rodas, muletas, bengalas e muito mais. Equipamentos de
-          qualidade para auxiliar na sua recuperação, com entrega rápida em
-          toda a região.
-        </p>
-
-        <div class="hero__actions">
-          <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20de%20aluguel."
-             class="btn btn--primary" target="_blank" rel="noopener">
-            Solicitar Orçamento
-          </a>
-          <a href="#produtos" class="btn btn--ghost">Ver Produtos</a>
+        <!-- Slide 1 -->
+        <div class="hero__slide hero__slide--1">
+          <div class="hero__slide-content">
+            <div class="hero__slide-inner">
+              <span class="eyebrow eyebrow--light">
+                <i class="fa-solid fa-location-dot"></i> Referência em Mobilidade e Recuperação
+              </span>
+              <h1 class="hero__title">
+                Aluguel de Equipamentos Ortopédicos para o seu Conforto
+              </h1>
+              <p class="hero__text">
+                Cadeiras de rodas, muletas, bengalas e muito mais. Equipamentos de qualidade para auxiliar na sua recuperação, com entrega rápida em toda a região.
+              </p>
+              <div class="hero__actions">
+                <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20de%20aluguel."
+                   class="btn btn--primary" target="_blank" rel="noopener">
+                  Solicitar Orçamento
+                </a>
+                <a href="#produtos" class="btn btn--ghost">Ver Produtos</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <ul class="hero__features">
-          <li>
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-              <strong>Entrega Rápida</strong>
-              <span>Uber &amp; 99</span>
+        <!-- Slide 2 -->
+        <div class="hero__slide hero__slide--2">
+          <div class="hero__slide-content">
+            <div class="hero__slide-inner">
+              <span class="eyebrow eyebrow--light">
+                <i class="fa-solid fa-shield-heart"></i> Qualidade e Segurança
+              </span>
+              <h1 class="hero__title">
+                Equipamentos Higienizados e Prontos para Uso
+              </h1>
+              <p class="hero__text">
+                Todos os nossos equipamentos passam por rigoroso processo de higienização antes de cada locação, garantindo segurança e conforto.
+              </p>
+              <div class="hero__actions">
+                <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20de%20aluguel."
+                   class="btn btn--primary" target="_blank" rel="noopener">
+                  Solicitar Orçamento
+                </a>
+                <a href="#produtos" class="btn btn--ghost">Ver Produtos</a>
+              </div>
             </div>
-          </li>
-          <li>
-            <i class="fa-solid fa-shield-heart"></i>
-            <div>
-              <strong>Equipamentos Higienizados</strong>
-              <span>100% Seguros</span>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="hero__slide hero__slide--3">
+          <div class="hero__slide-content">
+            <div class="hero__slide-inner">
+              <span class="eyebrow eyebrow--light">
+                <i class="fa-solid fa-truck-fast"></i> Entrega Rápida
+              </span>
+              <h1 class="hero__title">
+                Receba seu Equipamento Rapidamente em Casa
+              </h1>
+              <p class="hero__text">
+                Realizamos entregas para toda a região via Uber e 99, com agilidade e segurança. Fale conosco e receba hoje!
+              </p>
+              <div class="hero__actions">
+                <a href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20os%20produtos%20de%20aluguel."
+                   class="btn btn--primary" target="_blank" rel="noopener">
+                  Solicitar Orçamento
+                </a>
+                <a href="#produtos" class="btn btn--ghost">Ver Produtos</a>
+              </div>
             </div>
-          </li>
-          <li>
-            <i class="fa-solid fa-award"></i>
-            <div>
-              <strong>+3 Anos</strong>
-              <span>de Experiência</span>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+
+      </div><!-- /.hero__slides -->
+
+      <!-- Botões prev/next -->
+      <button class="hero__carousel-btn hero__carousel-btn--prev" id="carouselPrev" aria-label="Slide anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="hero__carousel-btn hero__carousel-btn--next" id="carouselNext" aria-label="Próximo slide">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Dots -->
+      <div class="hero__dots">
+        <button class="hero__dot is-active" data-index="0" aria-label="Slide 1"></button>
+        <button class="hero__dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="hero__dot" data-index="2" aria-label="Slide 3"></button>
       </div>
 
-      <div class="hero__media">
-        <div class="hero__image">
-          <img src="https://placehold.co/640x520/1b4f8c/ffffff?text=Foto+dos+Equipamentos"
-               alt="Equipamentos ortopédicos para aluguel" loading="lazy">
-        </div>
+    </div><!-- /.hero__carousel -->
 
-        <div class="hero__stat hero__stat--clients">
-          <strong>2000+</strong>
-          <span>Clientes Atendidos</span>
-        </div>
+    <!-- ===== INFO GRID (cinza escuro) ===== -->
+    <div class="hero__info-grid">
 
-        <div class="hero__stat hero__stat--rating">
-          <i class="fa-solid fa-star"></i>
-          <div>
-            <strong>5.0</strong>
-            <span>Avaliação Google</span>
+      <div class="hero__info-card">
+        <div class="hero__info-icon">
+          <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        <div class="hero__info-text">
+          <h3>Entrega Rápida</h3>
+          <p>Uber &amp; 99 — levamos o equipamento até você com agilidade e segurança.</p>
+        </div>
+      </div>
+
+      <div class="hero__info-card hero__info-card--prices">
+        <div class="hero__info-icon">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <div class="hero__info-text">
+          <h3>Os Valores Mais Acessíveis</h3>
+          <div class="prices-grid">
+            <span class="price-item"><strong>1 dia</strong> R$ 5,00</span>
+            <span class="price-item"><strong>15 dias</strong> R$ 35,00</span>
+            <span class="price-item"><strong>5 dias</strong> R$ 20,00</span>
+             <span class="price-item"><strong>30 dias</strong> R$ 50,00</span>
+            <span class="price-item"><strong>10 dias</strong> R$ 28,00</span>
           </div>
         </div>
       </div>
 
-    </div>
+      <div class="hero__info-card">
+        <div class="hero__info-icon">
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <div class="hero__info-text">
+          <h3>5.0 Avaliação Google</h3>
+          <p>Baseado em +250 avaliações — uma das empresas mais bem avaliadas da região.</p>
+        </div>
+      </div>
+
+    </div><!-- /.hero__info-grid -->
+
   </section>
 
   <!-- =================== PRODUTOS =================== -->
@@ -1388,11 +195,11 @@ h1, h2, h3, h4 {
     <div class="container">
 
       <div class="section__head">
-        <span class="eyebrow">Nossos Produtos</span>
-        <h2 class="section__title">Equipamentos para Locação</h2>
+        <span class="eyebrow">2 tipos de Muletas</span>
+        <h2 class="section__title">Muletas para Locação</h2>
         <p class="section__text">
-          Oferecemos uma ampla variedade de equipamentos ortopédicos de alta
-          qualidade, sempre higienizados e prontos para uso.
+          Oferecemos muletas ortopédicas de alta
+          qualidade, sempre higienizadas e prontas para uso.
         </p>
         <a href="#simulador" class="link-cta">
           Quer saber o preço? Use nossa calculadora de aluguel abaixo
@@ -1401,7 +208,42 @@ h1, h2, h3, h4 {
       </div>
 
       <div class="products-grid" id="productsGrid">
-        <!-- Os cards de produto são inseridos via JS (js/script.js -> products) -->
+
+        <!-- Muletas Axilares -->
+        <article class="product-card">
+          <span class="product-card__badge">Mais Pedido</span>
+          <div class="product-card__media">
+            <i class="fa-solid fa-crutch"></i>
+          </div>
+          <div class="product-card__body">
+            <h3>Muletas Axilares</h3>
+            <p>Muletas axilares tradicionais reguláveis para suporte completo.</p>
+            <span class="product-card__tag">Regulável</span>
+            <a class="btn btn--whatsapp btn--block" target="_blank" rel="noopener"
+               href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20alugar%3A%20Muletas%20Axilares">
+              <i class="fa-brands fa-whatsapp"></i> Solicitar
+            </a>
+          </div>
+        </article>
+
+        <!-- Muletas Canadenses -->
+        <article class="product-card">
+          <span class="product-card__badge">Mais Pedido</span>
+          <div class="product-card__media">
+            <i class="fa-solid fa-crutch"></i>
+          </div>
+          <div class="product-card__body">
+            <h3>Muletas Canadenses</h3>
+            <p>Muletas de alumínio ajustáveis, leves e resistentes para maior conforto.</p>
+            <span class="product-card__tag">Ultraleve</span>
+            <a class="btn btn--whatsapp btn--block" target="_blank" rel="noopener"
+               href="https://wa.me/5500000000000?text=Ol%C3%A1!%20Gostaria%20de%20alugar%3A%20Muletas%20Canadenses">
+              <i class="fa-brands fa-whatsapp"></i> Solicitar
+            </a>
+          </div>
+        </article>
+
+
       </div>
 
     </div>
@@ -1762,11 +604,6 @@ h1, h2, h3, h4 {
       </div>
 
       <div class="localizacao__map">
-        <!--
-          Substitua o conteúdo abaixo pelo iframe de incorporação do Google
-          Maps com o endereço real da sua empresa
-          (Google Maps > Compartilhar > Incorporar um mapa).
-        -->
         <iframe
           src="https://www.google.com/maps?q=Brasília,DF&output=embed"
           width="100%" height="100%" style="border:0;" allowfullscreen=""
@@ -1845,329 +682,6 @@ h1, h2, h3, h4 {
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
-<script>
-/* ============================================================
-   VIDA ATIVA ALUGUÉIS — BASE DE SITE
-   Script responsável por:
-   - Renderizar os cards de produtos a partir do array "products"
-   - Calcular o preço no Simulador de Preços
-   - Controlar o Accordion de Perguntas Frequentes
-   - Controlar o menu mobile
-   ============================================================ */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* ---------------------------------------------------------
-     1. NÚMERO DO WHATSAPP
-     Troque pelo número real da sua empresa (com DDI + DDD).
-     --------------------------------------------------------- */
-  const WHATSAPP_NUMBER = "5500000000000";
-
-  /* ---------------------------------------------------------
-     2. DADOS DOS PRODUTOS
-     - tag: selo curto exibido no card (ex: "Regulável")
-     - badge: true exibe a etiqueta "Mais Pedido"
-     - icon: ícone do Font Awesome (substitua pela <img> do
-       seu produto quando tiver as fotos)
-     - prices: tabela de preços por quantidade de dias.
-       O simulador interpola os valores entre os pontos.
-     --------------------------------------------------------- */
-  const products = [
-    {
-      id: "muletas-axilares",
-      name: "Muletas Axilares",
-      description: "Muletas axilares tradicionais reguláveis para suporte completo.",
-      tag: "Regulável",
-      icon: "fa-crutch",
-      badge: true,
-      prices: { 1: 10, 7: 35, 15: 55, 30: 80, 60: 130, 90: 170, 180: 280 }
-    },
-    {
-      id: "muletas-canadenses",
-      name: "Muletas Canadenses",
-      description: "Muletas de alumínio ajustáveis, leves e resistentes para maior conforto.",
-      tag: "Ultraleve",
-      icon: "fa-crutch",
-      badge: true,
-      prices: { 1: 12, 7: 40, 15: 65, 30: 95, 60: 150, 90: 195, 180: 320 }
-    },
-    {
-      id: "cadeira-de-rodas",
-      name: "Cadeira de Rodas",
-      description: "Cadeiras dobráveis, confortáveis e seguras para mobilidade.",
-      tag: "Higienizado",
-      icon: "fa-wheelchair",
-      badge: true,
-      prices: { 1: 20, 7: 70, 15: 110, 30: 160, 60: 260, 90: 340, 180: 560 }
-    },
-    {
-      id: "bota-ortopedica",
-      name: "Bota Ortopédica",
-      description: "Botas imobilizadoras para recuperação de fraturas e lesões.",
-      tag: "Higienizado",
-      icon: "fa-shoe-prints",
-      badge: true,
-      prices: { 1: 15, 7: 55, 15: 85, 30: 125, 60: 200, 90: 260, 180: 430 }
-    },
-    {
-      id: "cadeira-de-banho",
-      name: "Cadeira de Banho",
-      description: "Cadeira de banho com estrutura resistente e confortável.",
-      tag: "Higienizado",
-      icon: "fa-bath",
-      badge: false,
-      prices: { 1: 12, 7: 45, 15: 70, 30: 100, 60: 165, 90: 215, 180: 350 }
-    },
-    {
-      id: "andador",
-      name: "Andador",
-      description: "Andadores fixos e articulados com rodinhas frontais.",
-      tag: "Estável",
-      icon: "fa-walking",
-      badge: false,
-      prices: { 1: 12, 7: 42, 15: 65, 30: 95, 60: 155, 90: 200, 180: 330 }
-    },
-    {
-      id: "sandalia-baruk",
-      name: "Sandália Baruk",
-      description: "Sandálias ortopédicas Baruk para conforto e suporte dos pés.",
-      tag: "Higienizado",
-      icon: "fa-shoe-prints",
-      badge: false,
-      prices: { 1: 10, 7: 35, 15: 55, 30: 80, 60: 130, 90: 170, 180: 280 }
-    },
-    {
-      id: "bengala-4-pontas",
-      name: "Bengala 4 Pontas",
-      description: "Bengalas reguláveis de alumínio com base antiderrapante de 4 pontas.",
-      tag: "Antiderrapante",
-      icon: "fa-cane",
-      badge: false,
-      prices: { 1: 8, 7: 28, 15: 45, 30: 65, 60: 105, 90: 135, 180: 225 }
-    },
-    {
-      id: "bengala",
-      name: "Bengala",
-      description: "Bengalas reguláveis de alumínio com base antiderrapante de 1 ponta.",
-      tag: "Regulável",
-      icon: "fa-cane",
-      badge: false,
-      prices: { 1: 6, 7: 22, 15: 35, 30: 50, 60: 80, 90: 105, 180: 175 }
-    },
-    {
-      id: "imobilizador-de-joelho",
-      name: "Imobilizador de Joelho",
-      description: "Imobilizador ortopédico para proteção e recuperação do joelho.",
-      tag: "Higienizado",
-      icon: "fa-bone",
-      badge: false,
-      prices: { 1: 10, 7: 35, 15: 55, 30: 80, 60: 130, 90: 170, 180: 280 }
-    },
-    {
-      id: "almofada-triangular",
-      name: "Almofada Triangular",
-      description: "Almofada triangular para elevação e posicionamento.",
-      tag: "Higienizado",
-      icon: "fa-shapes",
-      badge: false,
-      prices: { 1: 8, 7: 28, 15: 45, 30: 65, 60: 105, 90: 135, 180: 225 }
-    },
-    {
-      id: "colete-jewett",
-      name: "Colete Jewett",
-      description: "Colete Jewett para imobilização e estabilização da coluna torácica e lombar.",
-      tag: "Higienizado",
-      icon: "fa-shirt",
-      badge: false,
-      prices: { 1: 18, 7: 65, 15: 100, 30: 145, 60: 235, 90: 305, 180: 500 }
-    }
-  ];
-
-  /* ---------------------------------------------------------
-     3. FUNÇÕES AUXILIARES
-     --------------------------------------------------------- */
-
-  // Formata um número para o padrão de moeda brasileiro (R$ 0,00)
-  function formatBRL(value) {
-    return "R$ " + value.toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  }
-
-  // Monta o link do WhatsApp com a mensagem pré-definida
-  function whatsappLink(message) {
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  }
-
-  // Calcula o preço estimado interpolando entre os pontos da tabela
-  function calcPrice(priceTable, days) {
-    const points = Object.keys(priceTable).map(Number).sort((a, b) => a - b);
-
-    if (days <= points[0]) {
-      return priceTable[points[0]];
-    }
-
-    const last = points[points.length - 1];
-    if (days >= last) {
-      return priceTable[last];
-    }
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const a = points[i];
-      const b = points[i + 1];
-      if (days >= a && days <= b) {
-        const priceA = priceTable[a];
-        const priceB = priceTable[b];
-        const ratio = (days - a) / (b - a);
-        return priceA + (priceB - priceA) * ratio;
-      }
-    }
-
-    return priceTable[points[0]];
-  }
-
-  /* ---------------------------------------------------------
-     4. RENDERIZA OS CARDS DE PRODUTOS
-     --------------------------------------------------------- */
-  const grid = document.getElementById("productsGrid");
-
-  products.forEach((product) => {
-    const card = document.createElement("article");
-    card.className = "product-card";
-
-    card.innerHTML = `
-      ${product.badge ? '<span class="product-card__badge">Mais Pedido</span>' : ""}
-      <div class="product-card__media">
-        <i class="fa-solid ${product.icon}"></i>
-      </div>
-      <div class="product-card__body">
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <span class="product-card__tag">${product.tag}</span>
-        <a class="btn btn--whatsapp btn--block" target="_blank" rel="noopener"
-           href="${whatsappLink(`Olá! Gostaria de alugar: ${product.name}`)}">
-          <i class="fa-brands fa-whatsapp"></i> Solicitar
-        </a>
-      </div>
-    `;
-
-    grid.appendChild(card);
-  });
-
-  /* ---------------------------------------------------------
-     5. SIMULADOR DE PREÇOS
-     --------------------------------------------------------- */
-  const equipamentoSelect = document.getElementById("equipamento");
-  const diasInput = document.getElementById("dias");
-  const diasLabel = document.getElementById("diasLabel");
-  const resultPrice = document.getElementById("resultPrice");
-  const resultSub = document.getElementById("resultSub");
-  const resultWhatsapp = document.getElementById("resultWhatsapp");
-
-  // Popula o <select> com os produtos
-  products.forEach((product) => {
-    const option = document.createElement("option");
-    option.value = product.id;
-    option.textContent = product.name;
-    equipamentoSelect.appendChild(option);
-  });
-
-  function updateSimulator() {
-    const selectedProduct = products.find((p) => p.id === equipamentoSelect.value);
-    const days = Number(diasInput.value);
-
-    diasLabel.textContent = `${days} ${days === 1 ? "dia" : "dias"}`;
-
-    const price = calcPrice(selectedProduct.prices, days);
-    const formattedPrice = formatBRL(price);
-
-    resultPrice.textContent = formattedPrice;
-    resultSub.textContent = `para ${days} ${days === 1 ? "dia" : "dias"} de aluguel`;
-
-    resultWhatsapp.href = whatsappLink(
-      `Olá! Gostaria de solicitar o aluguel de: *${selectedProduct.name}* por *${days} ${days === 1 ? "dia" : "dias"}*. ` +
-      `O simulador indicou ${formattedPrice}. Podem confirmar disponibilidade?`
-    );
-  }
-
-  equipamentoSelect.addEventListener("change", updateSimulator);
-  diasInput.addEventListener("input", updateSimulator);
-
-  // Calcula o valor inicial ao carregar a página
-  updateSimulator();
-
-  /* ---------------------------------------------------------
-     6. ACCORDION (FAQ)
-     --------------------------------------------------------- */
-  const accordionItems = document.querySelectorAll(".accordion__item");
-
-  function setPanelHeight(item, isOpen) {
-    const panel = item.querySelector(".accordion__panel");
-    panel.style.maxHeight = isOpen ? panel.scrollHeight + "px" : 0;
-  }
-
-  accordionItems.forEach((item) => {
-    const trigger = item.querySelector(".accordion__trigger");
-
-    // Define o estado inicial (o primeiro item começa aberto)
-    setPanelHeight(item, item.classList.contains("is-open"));
-
-    trigger.addEventListener("click", () => {
-      const isOpen = item.classList.contains("is-open");
-
-      // Fecha os outros itens (efeito "sanfona")
-      accordionItems.forEach((other) => {
-        other.classList.remove("is-open");
-        other.querySelector(".accordion__trigger").setAttribute("aria-expanded", "false");
-        setPanelHeight(other, false);
-      });
-
-      if (!isOpen) {
-        item.classList.add("is-open");
-        trigger.setAttribute("aria-expanded", "true");
-        setPanelHeight(item, true);
-      }
-    });
-  });
-
-  // Recalcula a altura do item aberto ao redimensionar a janela
-  window.addEventListener("resize", () => {
-    accordionItems.forEach((item) => {
-      if (item.classList.contains("is-open")) {
-        setPanelHeight(item, true);
-      }
-    });
-  });
-
-  /* ---------------------------------------------------------
-     7. MENU MOBILE
-     --------------------------------------------------------- */
-  const navToggle = document.getElementById("navToggle");
-  const nav = document.getElementById("nav");
-
-  navToggle.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    navToggle.classList.toggle("is-active");
-    navToggle.setAttribute("aria-expanded", isOpen);
-  });
-
-  // Fecha o menu mobile ao clicar em um link
-  nav.querySelectorAll(".nav__link").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("is-open");
-      navToggle.classList.remove("is-active");
-      navToggle.setAttribute("aria-expanded", "false");
-    });
-  });
-
-  /* ---------------------------------------------------------
-     8. ANO ATUAL NO RODAPÉ
-     --------------------------------------------------------- */
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-});
-</script>
 </html>
